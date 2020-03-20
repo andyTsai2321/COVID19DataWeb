@@ -56,10 +56,7 @@ var config = {
     }),
     new MiniCssExtractPlugin({
       filename: "./css/index.css"
-    }),
-    new CopyWebpackPlugin([
-        { from: './node_modules/@fortawesome/fontawesome-free/webfonts', to: './webfonts'}
-    ])
+    })
   ]
 };
 
