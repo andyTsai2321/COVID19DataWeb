@@ -9,39 +9,3 @@ $fa-font-path: "/webfonts";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/brands";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/regular";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
-
-html {
-  font-size: 0.8rem;
-}
-body {
-  background: #13152d;
-  color: #fff;
-}
-
-// @media (min-width:768px) {
-//   html {
-//     font-size: 1rem;
-//   }
-// }
-
-@media (min-width: 992px) {
-  html {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 1300px) {
-  .countries-container {
-    flex-flow: column;
-    .continent-right {
-      margin-right: 0;
-    }
-    .continent-left {
-      margin-left: 0;
-    }
-  }
-
-  .continent-wrap {
-    margin: 15px 0;
-  }
-}

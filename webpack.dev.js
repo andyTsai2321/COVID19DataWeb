@@ -12,7 +12,7 @@ var config = {
   },
   entry: {
     "index.bundle": [
-      path.resolve(__dirname, "./index.js"),
+      path.resolve(__dirname, "./js/index.js"),
       path.resolve(__dirname, "./scss/index.scss")
     ]
   },

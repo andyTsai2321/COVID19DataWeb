@@ -24,15 +24,16 @@ let continentList = {
   "South America": []
 };
 
-import countryJSON from "./country.json";
+import countryJSON from "../country.json";
 
 window.addEventListener("DOMContentLoaded", () => {
-  showLoading();
   getAllCases();
   listenerTh();
 });
 
 function getAllCases() {
+  showLoading("allCasesLoading");
+  showAllSectionLoading("sectionLoading");
   apiAllCases()
     .then(function(response) {
       buildTotalCases(response.data);
@@ -52,7 +53,7 @@ function getAllCountries() {
       console.log(error);
     })
     .then(() => {
-      completeLoading();
+      completeAllSectionLoading("sectionLoading");
     });
 }
 
@@ -167,10 +168,19 @@ function compareValues(key) {
 /* SORT END */
 
 /* LOADING START */
-function showLoading() {
-  document.getElementById("loadingDiv").style.visibility = "visible";
+function showLoading(type) {
+  document.getElementById(type).style.visibility = "visible";
 }
-function completeLoading() {
-  document.getElementById("loadingDiv").style.visibility = "hidden";
+function completeLoading(type) {
+  document.querySelector('.'+type).style.visibility = "hidden";
+}
+
+function showAllSectionLoading(type){
+  let elList = document.querySelectorAll('.'+type);
+  elList.forEach(el => el.style.visibility = "visible");
+}
+function completeAllSectionLoading(type){
+  let elList = document.querySelectorAll('.'+type);
+  elList.forEach(el => el.style.visibility = "hidden");
 }
 /* LOADING END */

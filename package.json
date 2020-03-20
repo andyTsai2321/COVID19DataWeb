@@ -28,6 +28,6 @@
     "@fortawesome/fontawesome-free": "^5.12.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
-    "copy-webpack-plugin": "^5.1.1",
+    "copy-webpack-plugin": "^5.1.1"
   }
 }
