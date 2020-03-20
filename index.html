@@ -3,10 +3,8 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1,
             shrink-to-fit=no">
-        <!-- <link rel="stylesheet" href="./dist/css/index.css"> -->
     </head>
     <body>
-
         <div class="all-container">
             <div id="allCasesId" class="container-fluid all-case-container"></div>
             <div id="allCountriesId" class="all-countries-container">
@@ -15,13 +13,12 @@
                         <h2>Asia</h2>
                         <table class="table table-fixed table-hover">
                             <thead>
-                                <tr>
-                                    <th>country</th>
-                                    <th>cases</th>
-                                    <th>deaths</th>
-                                    <th>todayCases</th>
-                                    <th>todayDeaths</th>
-                                    <th>recovered</th>
+                                <tr data-continent='Asia'>
+                                    <th data-value="country">Country <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="cases">Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="deaths">Deaths <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="todayCases">Today Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="recovered">Recovered <i class="fas fa-angle-down"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="asia" class="table-hover">
@@ -33,13 +30,12 @@
                         <h2>North America</h2>
                         <table class="table table-fixed table-hover">
                             <thead>
-                                <tr>
-                                    <th>country</th>
-                                    <th>cases</th>
-                                    <th>deaths</th>
-                                    <th>todayCases</th>
-                                    <th>todayDeaths</th>
-                                    <th>recovered</th>
+                                <tr data-continent='North America'>
+                                    <th data-value="country">Country <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="cases">Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="deaths">Deaths <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="todayCases">Today Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="recovered">Recovered <i class="fas fa-angle-down"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="nAmerica" class="table-hover">
@@ -54,16 +50,52 @@
                         <h2>Europe</h2>
                         <table class="table table-fixed table-hover">
                             <thead>
-                                <tr>
-                                    <th>country</th>
-                                    <th>cases</th>
-                                    <th>deaths</th>
-                                    <th>todayCases</th>
-                                    <th>todayDeaths</th>
-                                    <th>recovered</th>
+                                <tr data-continent="Europe">
+                                    <th data-value="country">Country <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="cases">Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="deaths">Deaths <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="todayCases">Today Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="recovered">Recovered <i class="fas fa-angle-down"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="europe" class="table-hover">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="continent-wrap continent-left">
+                        <h2>Oceania</h2>
+                        <table class="table table-fixed table-hover">
+                            <thead>
+                                <tr data-continent="Oceania">
+                                    <th data-value="country">Country <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="cases">Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="deaths">Deaths <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="todayCases">Today Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="recovered">Recovered <i class="fas fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="oceania" class="table-hover">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="countries-container">
+                    <div class="continent-wrap continent-right">
+                        <h2>South America</h2>
+                        <table class="table table-fixed table-hover">
+                            <thead>
+                                <tr data-continent="South America">
+                                    <th data-value="country">Country <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="cases">Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="deaths">Deaths <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="todayCases">Today Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="recovered">Recovered <i class="fas fa-angle-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="sAmerica" class="table-hover">
 
                             </tbody>
                         </table>
@@ -72,13 +104,12 @@
                         <h2>Africa</h2>
                         <table class="table table-fixed table-hover">
                             <thead>
-                                <tr>
-                                    <th>country</th>
-                                    <th>cases</th>
-                                    <th>deaths</th>
-                                    <th>todayCases</th>
-                                    <th>todayDeaths</th>
-                                    <th>recovered</th>
+                                <tr data-continent="Africa">
+                                    <th data-value="country">Country <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="cases">Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="deaths">Deaths <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="todayCases">Today Cases <i class="fas fa-angle-down"></i></th>
+                                    <th data-value="recovered">Recovered <i class="fas fa-angle-down"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="africa" class="table-hover">
@@ -87,6 +118,8 @@
                         </table>
                     </div>
                 </div>
+
+
 
             </div>
         </div>
@@ -98,8 +131,5 @@
                 <div class="line"></div>
             </div>
         </div>
-
-
-        <!-- <script src="./dist/index.js"></script> -->
     </body>
 </html>

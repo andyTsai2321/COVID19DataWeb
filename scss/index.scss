@@ -4,6 +4,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "index";
 
+$fa-font-path: "/webfonts";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
 
 html {
   font-size: 0.8rem;
@@ -36,7 +41,7 @@ body {
     }
   }
 
-    .continent-wrap {
-      margin: 15px 0;
-    }
+  .continent-wrap {
+    margin: 15px 0;
+  }
 }

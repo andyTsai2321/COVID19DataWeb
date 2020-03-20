@@ -1,19 +1,41 @@
 const axios = require("axios");
 
+// api
 const apiAllCases = () => axios.get("https://corona.lmao.ninja/all");
 const apiAllCountries = () => axios.get("https://corona.lmao.ninja/countries");
 
 const allCasesDom = document.getElementById("allCasesId");
-const allCountriesDom = document.getElementById("allCountriesId");
+const allThs = document.querySelectorAll("th");
 
-const asiaDom = document.getElementById("asia");
+const continentDomList = {
+  Asia: document.getElementById("asia"),
+  "North America": document.getElementById("nAmerica"),
+  Europe: document.getElementById("europe"),
+  Oceania: document.getElementById("oceania"),
+  Africa: document.getElementById("africa"),
+  "South America": document.getElementById("sAmerica")
+};
+let continentList = {
+  Asia: [],
+  "North America": [],
+  Europe: [],
+  Oceania: [],
+  Africa: [],
+  "South America": []
+};
 
 import countryJSON from "./country.json";
+
+window.addEventListener("DOMContentLoaded", () => {
+  showLoading();
+  getAllCases();
+  listenerTh();
+});
 
 function getAllCases() {
   apiAllCases()
     .then(function(response) {
-      buildAllCases(response.data);
+      buildTotalCases(response.data);
       getAllCountries(response.data);
     })
     .catch(function(error) {
@@ -24,7 +46,6 @@ function getAllCases() {
 function getAllCountries() {
   apiAllCountries()
     .then(function(response) {
-      console.log(response.data);
       buildAllCountries(response.data);
     })
     .catch(function(error) {
@@ -35,8 +56,18 @@ function getAllCountries() {
     });
 }
 
-function buildAllCases(data) {
-  console.log(data);
+function listenerTh() {
+  Array.from(allThs).forEach(link => {
+    link.addEventListener("click", function() {
+      let getContinent = this.parentNode.getAttribute("data-continent");
+      let getValue = this.getAttribute("data-value");
+      sortTable(getContinent, getValue);
+    });
+  });
+}
+
+/* BUILD START */
+function buildTotalCases(data) {
   allCasesDom.innerHTML = `    
    <div class="row">
    <div class="total-wrap col-sm-4">
@@ -59,45 +90,87 @@ function buildAllCountries(data) {
   data.forEach(x => {
     countryJSON.forEach(y => {
       if (x.country === y.country) {
-        buildByContinent(x, y.continent);
+        buildContinentData(x, y.continent);
       }
     });
   });
+
+  buildView();
 }
 
-function buildByContinent(data, continent) {
-  switch (continent) {
-    case "Asia":
-      asiaDom.innerHTML += `
-        <tr>
-            <th scope="col">${data.country}</th>
-            <th scope="col">${data.cases}</th>
-            <th scope="col">${data.deaths}</th>
-            <th scope="col">${data.todayCases}</th>
-            <th scope="col">${data.todayDeaths}</th>
-            <th scope="col">${data.recovered}</th>
-        </tr>
-      `;
-      break;
-    case "Mangoes":
-    case "Papayas":
-      console.log("Mangoes and papayas are $2.79 a pound.");
-      // expected output: "Mangoes and papayas are $2.79 a pound."
-      break;
-    default:
-    //   console.log("Sorry");
+function buildContinentData(data, continent) {
+  if (continentList[continent]) {
+    continentList[continent].push(data);
   }
 }
 
+function buildView(continent) {
+  if (continent) {
+    // build sp continent
+    let getSpDom = continentDomList[continent];
+    getSpDom.innerHTML = "";
+    let getSpArray = continentList[continent];
+    pushDetail(getSpArray, getSpDom);
+  } else {
+    // build all continent
+    for (let prop in continentList) {
+      let getDom = continentDomList[prop];
+      pushDetail(continentList[prop], getDom);
+    }
+  }
+}
+
+function pushDetail(array, dom) {
+  array.forEach(item => {
+    if (dom) {
+      dom.innerHTML += `
+                <tr>
+                    <th scope="col">${item.country}</th>
+                    <th scope="col">${item.cases}</th>
+                    <th scope="col">${item.deaths}</th>
+                    <th scope="col">${item.todayCases}</th>
+                    <th scope="col">${item.recovered}</th>
+                </tr>
+                `;
+    }
+  });
+}
+/* BUILD END */
+
+/* SORT START */
+function sortTable(continent, type) {
+  let getSpArray = continentList[continent];
+  getSpArray.sort(compareValues(type));
+  buildView(continent);
+}
+
+let orderDesc = true;
+function compareValues(key) {
+  orderDesc = !orderDesc;
+  return function innerSort(a, b) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
+
+    const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return orderDesc ? comparison * -1 : comparison;
+  };
+}
+/* SORT END */
+
+/* LOADING START */
 function showLoading() {
-  console.log("test");
   document.getElementById("loadingDiv").style.visibility = "visible";
 }
 function completeLoading() {
   document.getElementById("loadingDiv").style.visibility = "hidden";
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-  showLoading();
-  getAllCases();
-});
+/* LOADING END */

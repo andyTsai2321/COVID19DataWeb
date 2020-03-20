@@ -2,6 +2,7 @@ var path = require("path");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var config = {
   devServer: {
@@ -33,7 +34,6 @@ var config = {
       {
         test: /\.(scss|sass)$/,
         use: [
-          // 需要用到的 loader
           MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader"
@@ -55,10 +55,11 @@ var config = {
       template: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      // 指定輸出位置
-      // [name] 為上方進入點設定的 "名稱"
       filename: "./css/index.css"
-    })
+    }),
+    new CopyWebpackPlugin([
+        { from: './node_modules/@fortawesome/fontawesome-free/webfonts', to: './webfonts'}
+    ])
   ]
 };
 
