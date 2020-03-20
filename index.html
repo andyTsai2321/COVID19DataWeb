@@ -1,64 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- <link rel="stylesheet" href="./dist/css/index.css"> -->
-    <link href="./css/index.css" rel="stylesheet"></head>
-    <body>
-
-        <div class="all-container">
-            <div id="allCasesId" class="all-case-container"></div>
-            <div id="allCountriesId" class="all-countries-container col-12">
-                <div class="row">
-                    <div class="continent-wrap col-xl-6">
-                        <h1>Asia</h1>
-                        <table class="table table-fixed table-hover">
-                            <thead>
-                                <tr>
-                                    <th>country</th>
-                                    <th>cases</th>
-                                    <th>deaths</th>
-                                    <th>todayCases</th>
-                                    <th>todayDeaths</th>
-                                    <th>recovered</th>
-                                </tr>
-                            </thead>
-                            <tbody id="asia" class="table-hover">
-    
-                            </tbody>
-                        </table>
-                    </div>
-    
-                    <div class="continent-wrap col-xl-6">
-                        <h1>North America</h1>
-                        <table class="table table-fixed table-hover">
-                            <thead>
-                                <tr>
-                                    <th>country</th>
-                                    <th>cases</th>
-                                    <th>deaths</th>
-                                    <th>todayCases</th>
-                                    <th>todayDeaths</th>
-                                    <th>recovered</th>
-                                </tr>
-                            </thead>
-                            <tbody id="nAmerica" class="table-hover">
-    
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="loadingDiv" class="load-wrap" style="display: none;">
-            <div class="load-3">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-          </div>
-          
-        <!-- <script src="./dist/index.js"></script> -->
-    <script type="text/javascript" src="index.bundle.js"></script></body>
-</html>
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><link href="./css/index.css" rel="stylesheet"></head><body><div class="tab"><span class="web-title">COVID19 Data</span> <button class="tablinks" onclick="openPage(event, 'world')" id="defaultOpen">World</button></div><div id="world" class="all-container tabcontent" class="tabcontent"><div id="allCasesId" class="container-fluid all-case-container"><div id="allCasesLoading" class="load-wrap" style="visibility:
+                    hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div><div id="allCountriesId" class="all-countries-container"><div class="countries-container"><div class="continent-wrap continent-left"><h2>Asia</h2><table class="table table-fixed table-hover"><thead><tr data-continent="Asia"><th data-value="country">Country <span class="arrow-down">▾<span></span></span></th><th data-value="cases">Cases <span class="arrow-down">▾<span></span></span></th><th data-value="deaths">Deaths <span class="arrow-down">▾<span></span></span></th><th data-value="todayCases">Today Cases <span class="arrow-down">▾<span></span></span></th><th data-value="recovered">Recovered <span class="arrow-down">▾<span></span></span></th></tr></thead><tbody id="asia" class="table-hover"></tbody></table><div class="sectionLoading load-wrap" style="visibility:
+                            hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div><div class="continent-wrap continent-right"><h2>North America</h2><table class="table table-fixed table-hover"><thead><tr data-continent="North America"><th data-value="country">Country <span class="arrow-down">▾<span></span></span></th><th data-value="cases">Cases <span class="arrow-down">▾<span></span></span></th><th data-value="deaths">Deaths <span class="arrow-down">▾<span></span></span></th><th data-value="todayCases">Today Cases <span class="arrow-down">▾<span></span></span></th><th data-value="recovered">Recovered <span class="arrow-down">▾<span></span></span></th></tr></thead><tbody id="nAmerica" class="table-hover"></tbody></table><div class="sectionLoading load-wrap" style="visibility:
+                            hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div></div><div class="countries-container"><div class="continent-wrap continent-left"><h2>Europe</h2><table class="table table-fixed table-hover"><thead><tr data-continent="Europe"><th data-value="country">Country <span class="arrow-down">▾<span></span></span></th><th data-value="cases">Cases <span class="arrow-down">▾<span></span></span></th><th data-value="deaths">Deaths <span class="arrow-down">▾<span></span></span></th><th data-value="todayCases">Today Cases <span class="arrow-down">▾<span></span></span></th><th data-value="recovered">Recovered <span class="arrow-down">▾<span></span></span></th></tr></thead><tbody id="europe" class="table-hover"></tbody></table><div class="sectionLoading load-wrap" style="visibility:
+                            hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div><div class="continent-wrap continent-left"><h2>Oceania</h2><table class="table table-fixed table-hover"><thead><tr data-continent="Oceania"><th data-value="country">Country <span class="arrow-down">▾<span></span></span></th><th data-value="cases">Cases <span class="arrow-down">▾<span></span></span></th><th data-value="deaths">Deaths <span class="arrow-down">▾<span></span></span></th><th data-value="todayCases">Today Cases <span class="arrow-down">▾<span></span></span></th><th data-value="recovered">Recovered <span class="arrow-down">▾<span></span></span></th></tr></thead><tbody id="oceania" class="table-hover"></tbody></table><div class="sectionLoading load-wrap" style="visibility:
+                            hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div></div><div class="countries-container"><div class="continent-wrap continent-right"><h2>South America</h2><table class="table table-fixed table-hover"><thead><tr data-continent="South America"><th data-value="country">Country <span class="arrow-down">▾<span></span></span></th><th data-value="cases">Cases <span class="arrow-down">▾<span></span></span></th><th data-value="deaths">Deaths <span class="arrow-down">▾<span></span></span></th><th data-value="todayCases">Today Cases <span class="arrow-down">▾<span></span></span></th><th data-value="recovered">Recovered <span class="arrow-down">▾<span></span></span></th></tr></thead><tbody id="sAmerica" class="table-hover"></tbody></table><div class="sectionLoading load-wrap" style="visibility:
+                            hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div><div class="continent-wrap continent-right"><h2>Africa</h2><table class="table table-fixed table-hover"><thead><tr data-continent="Africa"><th data-value="country">Country <span class="arrow-down">▾<span></span></span></th><th data-value="cases">Cases <span class="arrow-down">▾<span></span></span></th><th data-value="deaths">Deaths <span class="arrow-down">▾<span></span></span></th><th data-value="todayCases">Today Cases <span class="arrow-down">▾<span></span></span></th><th data-value="recovered">Recovered <span class="arrow-down">▾<span></span></span></th></tr></thead><tbody id="africa" class="table-hover"></tbody></table><div class="sectionLoading load-wrap" style="visibility:
+                            hidden;"><div class="load-3"><div class="line"></div><div class="line"></div><div class="line"></div></div></div></div></div></div></div><div id="USA" class="all-container tabcontent"><h3>Paris</h3><p>Paris is the capital of France.</p></div><script>function openPage(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+            
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();</script><script src="index.bundle.js"></script></body></html>
