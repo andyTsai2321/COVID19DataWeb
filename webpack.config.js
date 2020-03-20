@@ -55,7 +55,7 @@ var config = {
       template: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: "./css/index.css"
+      filename: "./index.css"
     })
   ]
 };
