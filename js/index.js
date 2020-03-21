@@ -8,19 +8,19 @@ const allCasesDom = document.getElementById("allCasesId");
 const allThs = document.querySelectorAll("th");
 
 const continentDomList = {
-  Asia: document.getElementById("asia"),
+  "Asia": document.getElementById("asia"),
   "North America": document.getElementById("nAmerica"),
-  Europe: document.getElementById("europe"),
-  Oceania: document.getElementById("oceania"),
-  Africa: document.getElementById("africa"),
+  "Europe": document.getElementById("europe"),
+  "Oceania": document.getElementById("oceania"),
+  "Africa": document.getElementById("africa"),
   "South America": document.getElementById("sAmerica")
 };
 let continentList = {
-  Asia: [],
+  "Asia": [],
   "North America": [],
-  Europe: [],
-  Oceania: [],
-  Africa: [],
+  "Europe": [],
+  "Oceania": [],
+  "Africa": [],
   "South America": []
 };
 
@@ -28,23 +28,26 @@ import countryJSON from "../country.json";
 
 window.addEventListener("DOMContentLoaded", () => {
   getAllCases();
+  getAllCountries();
   listenerTh();
 });
 
 function getAllCases() {
   showLoading("allCasesLoading");
-  showAllSectionLoading("sectionLoading");
   apiAllCases()
     .then(function(response) {
       buildTotalCases(response.data);
-      getAllCountries(response.data);
     })
     .catch(function(error) {
       console.log(error);
+    })
+    .then(() => {
+      completeLoading("allCasesLoading");
     });
 }
 
 function getAllCountries() {
+  showAllSectionLoading("sectionLoading");
   apiAllCountries()
     .then(function(response) {
       buildAllCountries(response.data);
@@ -172,15 +175,15 @@ function showLoading(type) {
   document.getElementById(type).style.visibility = "visible";
 }
 function completeLoading(type) {
-  document.querySelector('.'+type).style.visibility = "hidden";
+  document.getElementById(type).style.visibility = "hidden";
 }
 
-function showAllSectionLoading(type){
-  let elList = document.querySelectorAll('.'+type);
-  elList.forEach(el => el.style.visibility = "visible");
+function showAllSectionLoading(type) {
+  let elList = document.querySelectorAll("." + type);
+  elList.forEach(el => (el.style.visibility = "visible"));
 }
-function completeAllSectionLoading(type){
-  let elList = document.querySelectorAll('.'+type);
-  elList.forEach(el => el.style.visibility = "hidden");
+function completeAllSectionLoading(type) {
+  let elList = document.querySelectorAll("." + type);
+  elList.forEach(el => (el.style.visibility = "hidden"));
 }
 /* LOADING END */
