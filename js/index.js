@@ -1,11 +1,14 @@
 const axios = require("axios");
 
 // api
-const apiAllCases = () => axios.get("https://corona.lmao.ninja/all");
-const apiAllCountries = () => axios.get("https://corona.lmao.ninja/countries");
+const apiAllCases = () => axios.get("https://disease.sh/v2/all");
+const apiAllCountries = () => axios.get("https://disease.sh/v2/countries");
+// const apiUSA = () => axios.get("https://corona.lmao.ninja/states");
 
 const allCasesDom = document.getElementById("allCasesId");
 const allThs = document.querySelectorAll("th");
+const allTab = document.querySelectorAll(".tablinks");
+const USAdom = document.getElementById("USA");
 
 const continentDomList = {
   "Asia": document.getElementById("asia"),
@@ -13,7 +16,7 @@ const continentDomList = {
   "Europe": document.getElementById("europe"),
   "Oceania": document.getElementById("oceania"),
   "Africa": document.getElementById("africa"),
-  "South America": document.getElementById("sAmerica")
+  "South America": document.getElementById("sAmerica"),
 };
 let continentList = {
   "Asia": [],
@@ -24,12 +27,15 @@ let continentList = {
   "South America": []
 };
 
+let USA = [];
+
 import countryJSON from "../country.json";
 
 window.addEventListener("DOMContentLoaded", () => {
   getAllCases();
   getAllCountries();
   listenerTh();
+  listenerTab();
 });
 
 function getAllCases() {
@@ -60,12 +66,38 @@ function getAllCountries() {
     });
 }
 
+function getUSA() {
+  apiUSA()
+  .then(function(response) {
+    console.log(response.data)
+    USA = response.data;
+    pushUSAdetail(USA, USAdom)
+  })
+  .catch(function(error) {
+    console.log(error);
+  })
+  .then(() => {
+    // completeAllSectionLoading("sectionLoading");
+  });
+}
+
 function listenerTh() {
   Array.from(allThs).forEach(link => {
     link.addEventListener("click", function() {
       let getContinent = this.parentNode.getAttribute("data-continent");
       let getValue = this.getAttribute("data-value");
       sortTable(getContinent, getValue);
+    });
+  });
+}
+
+function listenerTab(){
+  Array.from(allTab).forEach(link => {
+    link.addEventListener("click", function() {
+      let getValue = this.getAttribute("data-value");
+      if(getValue === 'USA'){
+        getUSA()
+      }
     });
   });
 }
@@ -92,6 +124,7 @@ function buildTotalCases(data) {
 
 function buildAllCountries(data) {
   data.forEach(x => {
+    buildContinentData()
     countryJSON.forEach(y => {
       if (x.country === y.country) {
         buildContinentData(x, y.continent);
@@ -101,6 +134,7 @@ function buildAllCountries(data) {
 
   buildView();
 }
+
 
 function buildContinentData(data, continent) {
   if (continentList[continent]) {
@@ -133,6 +167,23 @@ function pushDetail(array, dom) {
                     <th scope="col">${item.cases}</th>
                     <th scope="col">${item.deaths}</th>
                     <th scope="col">${item.todayCases}</th>
+                    <th scope="col">${item.recovered}</th>
+                </tr>
+                `;
+    }
+  });
+}
+
+function pushUSAdetail(array, dom) {
+  array.forEach(item => {
+    if (dom) {
+      dom.innerHTML += `
+                <tr>
+                    <th scope="col">${item.state}</th>
+                    <th scope="col">${item.cases}</th>
+                    <th scope="col">${item.deaths}</th>
+                    <th scope="col">${item.todayCases}</th>
+                    <th scope="col">${item.todayDeaths}</th>
                     <th scope="col">${item.recovered}</th>
                 </tr>
                 `;
